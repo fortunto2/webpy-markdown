@@ -11,7 +11,7 @@ import markdown
 urls = (
     '/(.*)', 'page',
     '/contacts', 'Contacts',
-    '/blog', 'Blog',
+    '/info', 'Info',
 )
 
 # Templates are found in the templates directory
@@ -48,21 +48,22 @@ class Contacts:
 
     def GET(self):
 
-
-        # Each URL maps to the corresponding .md file in pages/
         page_file = 'pages/contacts.md' % (url)
 
-        # Try to open the text file, returning a 404 upon failure
-        try:
-            f = open(page_file, 'r')
-        except IOError:
-            return web.notfound()
-
-        # Read the entire file, converting Markdown content to HTML
-        content = f.read()
+        content = open(page_file, 'r').read()
         content = md.convert(content)
 
-        # Render the page.html template using the converted content
+        return render.page(content)
+
+class Info:
+
+    def GET(self):
+
+        page_file = 'pages/info.md' % (url)
+
+        content = open(page_file, 'r').read()
+        content = md.convert(content)
+
         return render.page(content)
 
 
