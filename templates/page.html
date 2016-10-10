@@ -1,0 +1,26 @@
+$def with (content)
+<!doctype html>
+<html>
+  <head>
+    <title>Markdown Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+
+  </head>
+  <body>
+    <h1>
+      Custom header here
+    </h1>
+
+        <ul>
+    $for item in pages:
+        $ attr = ''
+        $if ctx.path == item['link']:
+            $ attr=' id="current"'
+        <li$:(attr)><a href="$item['link']">$item['name']</a></li>
+    $pass
+        </ul>
+
+    $:content
+  </body>
+</html>
