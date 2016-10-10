@@ -8,18 +8,12 @@ $def with (content)
 
   </head>
   <body>
-    <h1>
-      Custom header here
-    </h1>
 
-        <ul>
-    $for item in pages:
-        $ attr = ''
-        $if ctx.path == item['link']:
-            $ attr=' id="current"'
-        <li$:(attr)><a href="$item['link']">$item['name']</a></li>
-    $pass
-        </ul>
+    <ul class="nav nav-pills">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contacts">Contacts</a></li>
+    </ul>
 
     $:content
   </body>
